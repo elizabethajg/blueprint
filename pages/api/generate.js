@@ -22,7 +22,7 @@ const generateAction = async(req, res) => {
 
     const secondPrompt = 
     `
-    Use the portfolio project idea to generate a detailed architecture for the project. Format as a bulleted list with frontend, backend, and testing tools with their own sublists. Under each tool, write an explanation of what the tool will be used for.
+    Use the portfolio project idea to generate a detailed architecture for the project. Format the tech stack as a bulleted list with frontend, backend, and testing tools with their own sublists. Under each tool, write an explanation of what the tool will be used for. Be specific, name modern, relevant and appropriate tools.
     Idea: ${basePromptOutput.text}
     Architecture:
     `
