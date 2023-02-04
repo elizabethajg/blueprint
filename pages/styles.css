@@ -78,6 +78,12 @@ body {
     width: min-content;
 }
 
+.prompt-container label {
+    color: rgba(255, 255, 255, 0.75);
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
 .prompt-box {
     border-bottom-width: 1px;
     border-color: rgba(255, 255, 255, 0.1);
@@ -85,6 +91,7 @@ body {
     border-right-width: 1px;
     border-style: solid;
     border-top-width: 1px;
+    margin-top: 20px;
     place-content: flex-start;
     align-items: flex-start;
     background-color: rgba(255, 255, 255, 0.05);
@@ -93,7 +100,7 @@ body {
     flex: 0 0 auto;
     flex-flow: column nowrap;
     gap: 10px;
-    height: 150px;
+    height: 100px;
     overflow: hidden;
     padding: 20px;
     position: relative;
@@ -172,7 +179,7 @@ textarea {
 .generate-button {
     place-content: flex-start;
     align-items: flex-start;
-    background-color: rgb(255, 79, 18);
+    background-color: rgb(47, 82, 186);
     border-radius: 100px;
     display: flex;
     flex: 0 0 auto;

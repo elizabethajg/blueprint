@@ -4,9 +4,10 @@ import buildspaceLogo from '../assets/buildspace-logo.png';
 import { useState } from 'react';
 
 const Home = () => {
-  const [userInput, setUserInput] = useState('');
-  const [personaOutput, setPersonaOutput] = useState('');
-  const [mvpOutput, setMvpOutput] = useState('')
+  const [userSkills, setUserSkills] = useState('');
+  const [userTimeCommitment, setUserTimeCommitment] = useState('');
+  const [ideaOutput, setIdeaOutput] = useState('');
+  const [stackOutput, setStackOutput] = useState('');
   const [isGenerating, setIsGenerating] = useState(false);
 
   const callGenerateEndpoint = async () => {
@@ -18,19 +19,23 @@ const Home = () => {
       headers: {
         'Content-type': 'application/json',
       },
-      body: JSON.stringify({ userInput }),
+      body: JSON.stringify({ userSkills, userTimeCommitment}),
     });
 
     const data = await response.json();
-    const { baseOutput, mvpOutput } = data;
+    const { ideaOutput, stackOutput } = data;
 
-    setPersonaOutput(`${baseOutput.text}`);
-    setMvpOutput(`${mvpOutput.text}`);
+    setIdeaOutput(`${ideaOutput.text}`);
+    setStackOutput(`${stackOutput.text}`);
     setIsGenerating(false);
   }
 
-  const onUserChangedText = (event) => {
-    setUserInput(event.target.value);
+  const onUserChangedSkills = (event) => {
+    setUserSkills(event.target.value);
+  }
+
+  const onUserChangedTimeCommitment = (event) => {
+    setUserTimeCommitment(event.target.value);
   }
   return (
     <div className="root">
@@ -40,19 +45,32 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>user persona + product description</h1>
+            <h1>blooprint</h1>
           </div>
           <div className="header-subtitle">
-            <h2>enter your product idea below, the more detail the better</h2>
+            <h2>a tool to map out your next portfolio project</h2>
           </div>
         </div>
         <div className="prompt-container">
-          <textarea 
-            className="prompt-box"
-            placeholder="start-typing-here"
-            value={userInput}
-            onChange={onUserChangedText}/>
+          <label>
+            What skills do you want to build?
+            <textarea
+              className="prompt-box"
+              placeholder="e.g., swift, next.js, ui/ux design, blockchain engineering..."
+              value={userSkills}
+              onChange={onUserChangedSkills}/>
+          </label>
         </div>
+        {/* <div className="prompt-container">
+          <label>
+            Approximately how many hours do you want to put into this project?
+            <textarea
+              className="prompt-box"
+              placeholder="e.g., 5-10"
+              value={userTimeCommitment}
+              onChange={onUserChangedTimeCommitment}/>
+          </label>
+        </div> */}
         <div className="prompt-buttons">
           <a 
             className={isGenerating ? 'generate-button loading' : 'generate-button'}
@@ -63,23 +81,23 @@ const Home = () => {
             </div>
           </a>
         </div>
-        {personaOutput && mvpOutput &&(
+        {ideaOutput && stackOutput &&(
           <div className="output">
             <div className="output-header-container">
               <div className="output-header">
-                <h3>User Persona</h3>
+                <h3>Project Idea</h3>
               </div>
             </div>
             <div className="output-content">
-              <p>{personaOutput}</p>
+              <p>{ideaOutput}</p>
             </div>
             <div className="output-header-container">
               <div className="output-header">
-                <h3>Pitch</h3>
+                <h3>Architecture</h3>
               </div>
             </div>
             <div className="output-content">
-              <p>{mvpOutput}</p>
+              <p>{stackOutput}</p>
             </div>
           </div>
         )}

@@ -6,15 +6,15 @@ const configuration = new Configuration({
 
 const openai = new OpenAIApi(configuration);
 
-const basePromptPrefix = "Generate a user persona for the following product: ";
-
+const basePromptPrefix = `Generate an original, useful portfolio project for a software engineer who wants to build the following skills: `;
+const hoursPrefix = `The project should be practical and useful, something that could be used in daily life. This project should take approximately`
 const generateAction = async(req, res) => {
-    console.log(`API: ${basePromptPrefix}${req.body.userInput}`)
 
     const baseCompletion = await openai.createCompletion({
         model: 'text-davinci-003',
-        prompt: `${basePromptPrefix}${req.body.userInput}\n`,
-        temperature: 1,
+        prompt: `${basePromptPrefix}${req.body.userSkills}\n
+                ${hoursPrefix}${req.body.userTimeCommitment} to build.\n`,
+        temperature: 0.8,
         max_tokens: 500,
     });
 
@@ -22,10 +22,9 @@ const generateAction = async(req, res) => {
 
     const secondPrompt = 
     `
-    Use the product idea and user persona to adapt the original idea to a product so compelling that an investor would be excited to invest millions without doing any due dilligence. Include a unique and memorable two syllable name that does not incorporate the word energy. Write a pitch that includes a detailed product description that includes key features, benefits, and reasons it is superior to similar competing products.
-    Product: ${req.body.userInput}
-    User Persona: ${basePromptOutput.text}
-    Product Description:
+    Use the portfolio project idea to generate a detailed architecture for the project. Format as a bulleted list with frontend, backend, and testing tools with their own sublists. Under each tool, write an explanation of what the tool will be used for.
+    Idea: ${basePromptOutput.text}
+    Architecture:
     `
 
     const secondPromptCompletion = await openai.createCompletion({
@@ -37,7 +36,7 @@ const generateAction = async(req, res) => {
 
     const secondPromptOutput = secondPromptCompletion.data.choices.pop();
 
-    res.status(200).json({baseOutput: basePromptOutput, mvpOutput: secondPromptOutput});
+    res.status(200).json({ideaOutput: basePromptOutput, stackOutput: secondPromptOutput});
 };
 
 export default generateAction;
