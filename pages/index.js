@@ -45,7 +45,7 @@ const Home = () => {
       <div className="container">
         <div className="header">
           <div className="header-title">
-            <h1>blooprint</h1>
+            <h1>blueprint</h1>
           </div>
           <div className="header-subtitle">
             <h2>a tool to map out your next portfolio project</h2>
@@ -101,18 +101,6 @@ const Home = () => {
             </div>
           </div>
         )}
-      </div>
-      <div className="badge-container grow">
-        <a
-          href="https://buildspace.so/builds/ai-writer"
-          target="_blank"
-          rel="noreferrer"
-        >
-          <div className="badge">
-            <Image src={buildspaceLogo} alt="buildspace logo" />
-            <p>build with buildspace</p>
-          </div>
-        </a>
       </div>
     </div>
   );

@@ -1,3 +1,2 @@
-# buildspace 
-### Welcome 👋
-This is the starter template for the [build your own AI writing assistant w/ GPT-3](https://buildspace.so/builds/ai-writer) project.
+# Simple Next.js application that accepts user input of software engineering skills they would like to improve
+# OpenAI API integration then returns a description and detailed architecture of a portfolio project idea

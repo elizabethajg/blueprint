@@ -277,7 +277,7 @@ textarea {
 
 .output {
     place-content: center flex-start;
-    align-items: center;
+    align-items: flex-start;
     display: flex;
     flex: 0 0 auto;
     flex-flow: column nowrap;
@@ -330,7 +330,7 @@ textarea {
 .output-content p {
     text-align: left;
     white-space: pre-line;
-    color: rgba(255, 255, 255, 0.5);
+    color: rgba(255, 255, 255, 0.75);
 }
 
 @media (min-width: 810px) and (max-width: 1199px) {
