@@ -1,4 +1,4 @@
-##Blueprint
+## Blueprint
 
 Simple Next.js application that accepts user input of software engineering skills they would like to improve
 
